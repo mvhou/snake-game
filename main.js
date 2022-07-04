@@ -24,7 +24,8 @@ const addEventListeners = () => {
         else if (e.key === 'p') {
             paused = !paused
         }
-    })
+    });
+
     document.querySelector("#restart").onclick = async () => { 
         restart = true;
         await sleep(GAME_SPEED);
@@ -45,9 +46,6 @@ const randomPos = (maxY, maxX) => [randomNum(0, maxY), randomNum(0, maxX)];
 
 const checkPos = ([y1, x1], [y2, x2]) => (y1 == y2 && x1 == x2);
 
-// const die = () => document.querySelector('gameboard').innerHTML = "YOU DIED"
-
-
 const createNewCoin = (tail, board) => {
     let newCoin = randomPos(HEIGHT-1, WIDTH-1);
     while (tail.find(x => (checkPos(x, newCoin)))) {
@@ -61,7 +59,7 @@ const createLine = () => `<line>${document.createElement('line').innerHTML = Arr
 
 const initializeGame = () => {
     const gb = document.querySelector('gameboard');
-    const lines = Array(WIDTH).fill(null).map((_,i) => createLine());
+    const lines = Array(WIDTH).fill(null).map(createLine);
     gb.innerHTML = [...lines].join('');
     const b = [...document.querySelectorAll('line')].map(line => [...line.querySelectorAll('pixel')])
     return {
@@ -85,7 +83,7 @@ const removeClass = ([y,x], c, board) => board[y][x].classList.remove(c);
 
 const checkTailHit = (position, tail) => (tail.find(x => checkPos(x, position)) !== undefined)
 
-const sleep = async (t) => await new Promise((r) => setTimeout(r, t));
+const sleep = async (t) => new Promise((r) => setTimeout(r, t));
 
 const manageTail = (snake, board) => {
     snake.tail.push(snake.position);
