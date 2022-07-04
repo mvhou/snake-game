@@ -9,13 +9,15 @@ body {
     color: #777777;
 }
 
+body { min-height: 100vh; }
+
 gameboard {
     display: flex;
     flex-direction: column;
     animation: bg 10s infinite linear;
     border: 2px solid black;
-    width: 600px;
-    height: 600px;
+    width: 50vh;
+    height: 50vh;
     text-align: center;
     color: darkred;
     font-size: 250px;
