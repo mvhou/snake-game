@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>snake game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <gameboard id="gameboard"></gameboard>
+    <panel>
+        <score>
+            <h3>Score</h3>
+            <div id="score">0</div>
+        </score>
+        <settings>
+            <div id="color-settings">
+                <label for="color">Snake color:</label>
+                <select name="color" id="color">
+                    <option value="green">Green</option>
+                    <option value="rainbow">Rainbow</option>
+                    <option value="fog">Fog</option>
+                </select>
+            </div>
+            <button id="restart">Restart</button>
+        </settings>
+    </panel>
+    <style id="game-style">
+        .snake {
+            background-color: green;
+        }
+    </style>
+</body>
+<script type="module" src="main.js"></script>
+</html>
