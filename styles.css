@@ -9,12 +9,14 @@ body {
     color: #777777;
 }
 
-body { min-height: 100vh; }
+body {
+    min-height: 50vh;
+    min-width: 50vh;
+}
 
 gameboard {
     display: flex;
     flex-direction: column;
-    animation: bg 10s infinite linear;
     border: 2px solid black;
     width: 50vh;
     height: 50vh;
@@ -51,6 +53,13 @@ settings {
 #color-settings {
     display: flex;
     flex-direction: column;
+    gap: 5px;
+}
+
+#game-settings {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 
 #restart {

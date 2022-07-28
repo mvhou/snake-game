@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <gameboard id="gameboard"></gameboard>
+    <gameboard id="gameboard" class="gameboard"></gameboard>
     <panel>
         <score>
             <h3>Score</h3>
@@ -16,11 +16,25 @@
         </score>
         <settings>
             <div id="color-settings">
-                <label for="color">Snake color:</label>
-                <select name="color" id="color">
+                <label for="snake-color">Snake color:</label>
+                <select name="snake-color" id="snake-color">
                     <option value="green">Green</option>
                     <option value="rainbow">Rainbow</option>
                     <option value="fog">Fog</option>
+                </select>
+                <label for="board-color">Board color:</label>
+                <select name="board-color" id="board-color">
+                    <option value="green">Green</option>
+                    <option value="rainbow">Rainbow</option>
+                    <option value="fog">Fog</option>
+                </select>
+            </div>
+            <div id="game-settings">
+                <label for="game-speed">Game speed:</label>
+                <select name="game-speed" id="game-speed" value="normal">
+                    <option value="slow">Slow</option>
+                    <option value="normal" selected>Normal</option>
+                    <option value="fast">Fast</option>
                 </select>
             </div>
             <button id="restart">Restart</button>
@@ -29,6 +43,9 @@
     <style id="game-style">
         .snake {
             background-color: green;
+        }
+        .gameboard {
+            animation: bg 10s infinite linear;
         }
     </style>
 </body>

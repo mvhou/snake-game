@@ -1,13 +1,13 @@
 import styling from "./styling.js";
+import { WIDTH, HEIGHT, STARTING_LENGTH } from "./parameters.js";
 
-const WIDTH = 20;
-const HEIGHT = 20;
-const GAME_SPEED = 50;
-const STARTING_LENGTH = 5;
 var newDirection = [1, 0];
 var direction = [1,0];
 var restart = false;
 var paused = false;
+var gameSpeed = 100;
+
+const test = styling();
 
 const getDirection = (d) => ((d[0] === 0 && direction[0] === 0) || (d[1] === 0 && direction[1] === 0)) ? direction : d;
 
@@ -28,15 +28,26 @@ const addEventListeners = () => {
 
     document.querySelector("#restart").onclick = async () => { 
         restart = true;
-        await sleep(GAME_SPEED);
         restart = false;
-        direction, newDirection = [1,0];
+        newDirection = [1,0];
         playGame(initializeSnake(), initializeGame());
     }
 
-    document.querySelector("#color").onchange = (e) => {
-        console.log(styling)
-        styling().setStyle(e.target.value);
+    document.querySelector("#snake-color").onchange = (e) => {
+        test.setStyle("snake", e.target.value);
+    }
+
+    document.querySelector("#board-color").onchange = (e) => {
+        test.setStyle("board", 'bg-' + e.target.value);
+    }
+
+    document.querySelector("#game-speed").onchange = (e) => {
+        const speeds = {
+            slow: 200,
+            normal: 80,
+            fast: 40
+        }
+        gameSpeed = speeds[e.target.value] || 100;
     }
 }
 
@@ -94,8 +105,8 @@ const manageTail = (snake, board) => {
 }
 
 const getNewPosition = ([dY, dX], [pY, pX]) => {
-    var newY = (dY + pY) % HEIGHT;
-    var newX = (dX + pX) % WIDTH;
+    const newY = (dY + pY) % HEIGHT;
+    const newX = (dX + pX) % WIDTH;
     return [(newY >= 0) ? newY : HEIGHT - 1, (newX >= 0) ? newX : WIDTH -1];
 }
 
@@ -114,10 +125,10 @@ const playGame = async (snake, game) => {
             }
             document.querySelector('#score').innerText = game.score;
             if (checkTailHit(snake.position, snake.tail))
-                throw new Error("lol");
+                return ;
             manageTail(snake, game.board);
         }
-        await sleep(GAME_SPEED)
+        await sleep(gameSpeed)
     }
 }
 
