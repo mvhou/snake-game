@@ -1,12 +1,14 @@
 import { WIDTH, HEIGHT, STARTING_LENGTH } from "./parameters.js";
 import * as g from './gameFunctions.js'
+import styling from "./styling.js";
 
+const test = styling();
 
 const createLine = () => `<line>${document.createElement('line').innerHTML = Array(WIDTH).fill(null).map((_,i) => `<pixel><sub></sub></pixel>`).join('')}</line>`;
 
 const getDirection = (d, direction) => ((d[0] === 0 && direction[0] === 0) || (d[1] === 0 && direction[1] === 0)) ? direction : d;
 
-export const initializeGame = () => {
+const initializeGame = () => {
     const gb = document.querySelector('gameboard');
     const lines = Array(WIDTH).fill(null).map(createLine);
     gb.innerHTML = [...lines].join('');
@@ -21,7 +23,7 @@ export const initializeGame = () => {
     };
 }
 
-export const initializeSnake = () => ({
+const initializeSnake = () => ({
     position: [WIDTH / 2, HEIGHT / 2],
     direction: [1,0],
     tail: [],
@@ -29,7 +31,7 @@ export const initializeSnake = () => ({
     dead: false,
 });
 
-export const addEventListeners = (snake, game) => {
+const addEventListeners = (snake, game) => {
   document.addEventListener("keydown", (e) => {
       const moveMap = {
           "w": [-1, 0],
