@@ -4,7 +4,7 @@ import styling from "./styling.js";
 
 const test = styling();
 
-const createLine = () => `<line>${document.createElement('line').innerHTML = Array(WIDTH).fill(null).map((_,i) => `<pixel><sub></sub></pixel>`).join('')}</line>`;
+const createLine = () => `<line>${document.createElement('line').innerHTML = Array(WIDTH).fill(null).map(() => "<pixel><sub></sub></pixel>").join('')}</line>`;
 
 const getDirection = (d, direction) => ((d[0] === 0 && direction[0] === 0) || (d[1] === 0 && direction[1] === 0)) ? direction : d;
 
