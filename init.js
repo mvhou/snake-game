@@ -1,6 +1,7 @@
 import { WIDTH, HEIGHT, STARTING_LENGTH } from "./parameters.js";
 import * as g from './gameFunctions.js'
 import styling from "./styling.js";
+import { playGame } from "./game.js";
 
 const test = styling();
 
@@ -46,15 +47,12 @@ const addEventListeners = (snake, game) => {
       }
   });
 
- document.querySelector("#restart").onclick = async () => { 
-      game.restart = true;
-      game.restart = false;
-      snake.newDirection = [1,0];
-      playGame(initializeSnake(), initializeGame());
+  document.querySelector("#restart").onclick = async () => {
+    playGame(...restart());
   }
 
   document.querySelector("#snake-color").onchange = (e) => {
-      test.setStyle("snake", e.target.value);
+    test.setStyle("snake", e.target.value);
   }
 
   document.querySelector("#board-color").onchange = (e) => {
@@ -73,3 +71,5 @@ const addEventListeners = (snake, game) => {
 }
 
 export const init = () => addEventListeners(initializeSnake(), initializeGame())
+
+export const restart = () => [initializeSnake(), initializeGame()]
