@@ -5,6 +5,8 @@ import { playGame } from "./game.js";
 
 const test = styling();
 
+let id = 0;
+
 const createLine = () => `<line>${document.createElement('line').innerHTML = Array(WIDTH).fill(null).map(() => "<pixel><sub></sub></pixel>").join('')}</line>`;
 
 const getDirection = (d, direction) => ((d[0] === 0 && direction[0] === 0) || (d[1] === 0 && direction[1] === 0)) ? direction : d;
@@ -21,6 +23,7 @@ const initializeGame = () => {
         restart: true,
         speed: 80,
         paused: false,
+        id: id++
     };
 }
 
@@ -48,15 +51,16 @@ const addEventListeners = (snake, game) => {
   });
 
   document.querySelector("#restart").onclick = async () => {
-    playGame(...restart());
+    game.restart = false
+    playGame(...init());
   }
 
   document.querySelector("#snake-color").onchange = (e) => {
-    test.setStyle("snake", e.target.value);
+    test.setStyle("snake", e.target.value, game.speed);
   }
 
   document.querySelector("#board-color").onchange = (e) => {
-      test.setStyle("board", 'bg-' + e.target.value);
+      test.setStyle("board", e.target.value, game.speed);
   }
 
   document.querySelector("#game-speed").onchange = (e) => {
