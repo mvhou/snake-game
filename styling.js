@@ -1,7 +1,7 @@
 const styling = () => {
     const s = document.querySelector("#game-style");
     const getNewStyle = (element, style, speed) => {
-        const animationSpeed = speed / [100, 10][+(element === "bg")]
+        const animationSpeed = speed / [100, 10][+(element === "board")]
         const styleMap = {
             rainbow: `animation: rainbow ${animationSpeed}s infinite linear;`,
             green: `background-color: green;`,
